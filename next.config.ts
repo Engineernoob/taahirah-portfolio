@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
  reactStrictMode: true,
- appDir: true
+ swcMinify: true
 };
 
 export default nextConfig;
