@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.6",
     "@fontsource/jetbrains-mono": "^5.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "clsx": "^2.1.1",
