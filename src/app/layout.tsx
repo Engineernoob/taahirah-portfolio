@@ -1,22 +1,22 @@
 // app/layout.tsx
-import './globals.css'
-import type { Metadata } from 'next'
+import "./globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Taahirah Denmark',
-  description: 'LLM Infra Engineer + Autonomous Agent Architect',
-}
+  title: "TaahirahOS",
+  description: "Windows 95-inspired AI OS interface by Taahirah Denmark",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-background text-foreground antialiased font-mono">
+    <html lang="en">
+      <body className="bg-black text-lime-300 font-mono antialiased">
         {children}
       </body>
     </html>
-  )
+  );
 }
