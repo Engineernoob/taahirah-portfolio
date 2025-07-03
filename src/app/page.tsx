@@ -1,23 +1,26 @@
-// app/page.tsx
 'use client';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function Landing() {
+export default function BootScreen() {
   const router = useRouter();
 
   useEffect(() => {
+    const audio = new Audio('/sounds/boot.mp3');
+    audio.play();
+
     const timer = setTimeout(() => {
-      router.push('./home'); // Redirect to fake desktop after boot
-    }, 4000); // Adjust delay if adding boot animation
+      router.push('/login'); // ✅ Corrected route
+    }, 4500); // Adjust to match boot sound length
 
     return () => clearTimeout(timer);
   }, [router]);
 
   return (
-    <main className="min-h-screen bg-black text-lime-400 flex items-center justify-center font-mono">
-      <h1 className="text-3xl glitch-text">Booting TaahirahOS...</h1>
+    <main className="min-h-screen bg-black text-lime-400 flex flex-col items-center justify-center font-mono">
+      <div className="glitch-text text-3xl mb-2">[🟢] Booting TaahirahOS...</div>
+      <div className="glitch-text text-5xl font-bold tracking-widest">TaahirahOS</div>
     </main>
   );
 }
