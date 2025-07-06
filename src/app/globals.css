@@ -1,26 +1,133 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 90%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 142 76% 36% / 0.2;
+    --input: 0 0% 10%;
+    --ring: 142 76% 36%;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Noto Sans Mono", "Droid Sans Mono", "Liberation Mono", Consolas, "Courier New", monospace;
+    font-feature-settings: "liga" 1, "calt" 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+
+/* Selection color */
+::selection {
+  background: #22c55e;
+  color: #000;
+}
+
+/* Smooth animations */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Font loading optimization */
+@supports (font-display: swap) {
+  @font-face {
+    font-display: swap;
+  }
+}
+
+/* Ensure consistent font rendering across browsers */
+body,
+input,
+textarea,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Enhanced typography for better readability */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+p,
+li,
+span {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+code,
+pre {
+  font-family:
+    var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Noto Sans Mono", "Droid Sans Mono", "Liberation Mono", Consolas, "Courier New", monospace;
+  font-weight: 400;
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
 }
