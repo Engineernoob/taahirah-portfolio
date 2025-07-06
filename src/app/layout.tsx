@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 
@@ -15,7 +15,11 @@ export const metadata: Metadata = {
   description: "Engineering the infrastructure behind autonomous systems",
   keywords: ["AI Engineer", "Infrastructure", "Autonomous Systems", "Machine Learning"],
   authors: [{ name: "Taahirah Denmark" }],
-  viewport: "width=device-width, initial-scale=1",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({

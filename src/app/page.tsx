@@ -1,12 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { useState, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Download,
   ExternalLink,
@@ -23,19 +34,19 @@ import {
   X,
   ChevronDown,
   ArrowRight,
-} from "lucide-react"
+} from "lucide-react";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const { scrollY } = useScroll()
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     const unsubscribe = scrollY.onChange((latest) => {
-      setIsScrolled(latest > 50)
-    })
-    return () => unsubscribe()
-  }, [scrollY])
+      setIsScrolled(latest > 50);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   const navItems = [
     { name: "About", href: "#about" },
@@ -44,14 +55,16 @@ function Navbar() {
     { name: "Experience", href: "#experience" },
     { name: "Philosophy", href: "#philosophy" },
     { name: "Contact", href: "#contact" },
-  ]
+  ];
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/80 backdrop-blur-md border-b border-green-500/20" : "bg-transparent"
+        isScrolled
+          ? "bg-black/80 backdrop-blur-md border-b border-green-500/20"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4">
@@ -78,7 +91,12 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden text-green-400" onClick={() => setIsOpen(!isOpen)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-green-400"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
@@ -110,16 +128,19 @@ function Navbar() {
         </AnimatePresence>
       </div>
     </motion.nav>
-  )
+  );
 }
 
 function HeroSection() {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 150])
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+      <motion.div
+        style={{ y }}
+        className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"
+      />
 
       {/* Animated Grid Background */}
       <div className="absolute inset-0 opacity-20">
@@ -189,18 +210,25 @@ function HeroSection() {
 
       <motion.div
         animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{
+          duration: 2,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <ChevronDown className="h-8 w-8 text-green-400" />
       </motion.div>
     </section>
-  )
+  );
 }
 
 function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-b from-black to-gray-900"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -219,21 +247,25 @@ function AboutSection() {
               <span className="text-sm font-medium">~/about/mission.md</span>
             </div>
             <p className="text-lg text-gray-300 leading-relaxed mb-6 font-light">
-              I'm on a mission to build cutting-edge AI assistants, local-first tooling, and autonomous agent systems
-              that push the boundaries of what's possible. My work focuses on creating infrastructure that enables
-              intelligent systems to run efficiently at the edge, bringing AI capabilities directly to users without
-              compromising privacy or performance.
+              I'm on a mission to build cutting-edge AI assistants, local-first
+              tooling, and autonomous agent systems that push the boundaries of
+              what's possible. My work focuses on creating infrastructure that
+              enables intelligent systems to run efficiently at the edge,
+              bringing AI capabilities directly to users without compromising
+              privacy or performance.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed font-light">
-              From distributed training pipelines to real-time inference engines, I architect solutions that scale from
-              prototype to production. I believe in open infrastructure, transparent AI, and building systems that
-              empower developers to create the next generation of autonomous applications.
+              From distributed training pipelines to real-time inference
+              engines, I architect solutions that scale from prototype to
+              production. I believe in open infrastructure, transparent AI, and
+              building systems that empower developers to create the next
+              generation of autonomous applications.
             </p>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function SystemsSection() {
@@ -258,7 +290,8 @@ function SystemsSection() {
     },
     {
       title: "SwiftUI Agent Framework",
-      description: "Native macOS framework for building AI-powered desktop applications with local-first architecture.",
+      description:
+        "Native macOS framework for building AI-powered desktop applications with local-first architecture.",
       technologies: ["SwiftUI", "Core ML", "Combine", "SQLite"],
       github: "#",
       demo: "#",
@@ -266,7 +299,8 @@ function SystemsSection() {
     },
     {
       title: "CrewAI Workflow Engine",
-      description: "Distributed workflow orchestration system for multi-agent AI systems with real-time collaboration.",
+      description:
+        "Distributed workflow orchestration system for multi-agent AI systems with real-time collaboration.",
       technologies: ["CrewAI", "Python", "Celery", "RabbitMQ"],
       github: "#",
       demo: "#",
@@ -290,10 +324,13 @@ function SystemsSection() {
       demo: "#",
       status: "Enterprise",
     },
-  ]
+  ];
 
   return (
-    <section id="systems" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section
+      id="systems"
+      className="py-20 bg-gradient-to-b from-gray-900 to-black"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -373,7 +410,7 @@ function SystemsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function TechnicalArsenalSection() {
@@ -381,27 +418,67 @@ function TechnicalArsenalSection() {
     {
       title: "Languages & Frameworks",
       icon: <Code2 className="h-5 w-5" />,
-      technologies: ["Python", "Rust", "Swift", "JavaScript", "TypeScript", "Go", "React", "SwiftUI", "Electron"],
+      technologies: [
+        "Python",
+        "Rust",
+        "Swift",
+        "JavaScript",
+        "TypeScript",
+        "Go",
+        "React",
+        "SwiftUI",
+        "Electron",
+      ],
     },
     {
       title: "AI & ML Infrastructure",
       icon: <Brain className="h-5 w-5" />,
-      technologies: ["Ollama", "CrewAI", "PyTorch", "TensorFlow", "CUDA", "Core ML", "TensorFlow.js", "Hugging Face"],
+      technologies: [
+        "Ollama",
+        "CrewAI",
+        "PyTorch",
+        "TensorFlow",
+        "CUDA",
+        "Core ML",
+        "TensorFlow.js",
+        "Hugging Face",
+      ],
     },
     {
       title: "Systems & DevOps",
       icon: <Cpu className="h-5 w-5" />,
-      technologies: ["Docker", "Kubernetes", "Redis", "PostgreSQL", "gRPC", "NATS", "Prometheus", "Grafana"],
+      technologies: [
+        "Docker",
+        "Kubernetes",
+        "Redis",
+        "PostgreSQL",
+        "gRPC",
+        "NATS",
+        "Prometheus",
+        "Grafana",
+      ],
     },
     {
       title: "Development Tools",
       icon: <Terminal className="h-5 w-5" />,
-      technologies: ["Node.js", "FastAPI", "Celery", "RabbitMQ", "SQLite", "Git", "Linux", "macOS"],
+      technologies: [
+        "Node.js",
+        "FastAPI",
+        "Celery",
+        "RabbitMQ",
+        "SQLite",
+        "Git",
+        "Linux",
+        "macOS",
+      ],
     },
-  ]
+  ];
 
   return (
-    <section id="arsenal" className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section
+      id="arsenal"
+      className="py-20 bg-gradient-to-b from-black to-gray-900"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -434,7 +511,10 @@ function TechnicalArsenalSection() {
                       {category.technologies.map((tech) => (
                         <motion.div
                           key={tech}
-                          whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
+                          whileHover={{
+                            scale: 1.05,
+                            backgroundColor: "rgba(34, 197, 94, 0.1)",
+                          }}
                           className="bg-gray-800/50 rounded-md px-3 py-2 text-sm font-mono text-center text-gray-300 hover:text-green-400 transition-all duration-300 cursor-default border border-gray-700/50 hover:border-green-500/50 font-medium"
                         >
                           {tech}
@@ -449,7 +529,7 @@ function TechnicalArsenalSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function ExperienceSection() {
@@ -506,10 +586,13 @@ function ExperienceSection() {
         "Presented work to senior leadership team",
       ],
     },
-  ]
+  ];
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section
+      id="experience"
+      className="py-20 bg-gradient-to-b from-gray-900 to-black"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -538,7 +621,9 @@ function ExperienceSection() {
                     <CardHeader>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                         <div>
-                          <CardTitle className="text-xl font-mono text-green-400 font-semibold">{exp.title}</CardTitle>
+                          <CardTitle className="text-xl font-mono text-green-400 font-semibold">
+                            {exp.title}
+                          </CardTitle>
                           <CardDescription className="text-lg font-mono text-gray-300 font-medium">
                             {exp.company}
                           </CardDescription>
@@ -552,7 +637,10 @@ function ExperienceSection() {
                             <MapPin className="h-3 w-3" />
                             <span className="font-medium">{exp.location}</span>
                           </div>
-                          <Badge variant="outline" className="text-xs border-green-500/50 text-green-400 font-medium">
+                          <Badge
+                            variant="outline"
+                            className="text-xs border-green-500/50 text-green-400 font-medium"
+                          >
                             {exp.type}
                           </Badge>
                         </div>
@@ -563,7 +651,9 @@ function ExperienceSection() {
                         {exp.achievements.map((achievement, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <ArrowRight className="h-4 w-4 mt-0.5 text-green-400 flex-shrink-0" />
-                            <span className="text-gray-300 font-mono text-sm font-light">{achievement}</span>
+                            <span className="text-gray-300 font-mono text-sm font-light">
+                              {achievement}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -576,12 +666,15 @@ function ExperienceSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function PhilosophySection() {
   return (
-    <section id="philosophy" className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section
+      id="philosophy"
+      className="py-20 bg-gradient-to-b from-black to-gray-900"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -597,47 +690,62 @@ function PhilosophySection() {
           <div className="bg-gray-900/50 border border-green-500/20 rounded-lg p-8 hover:border-green-400/50 transition-all duration-300">
             <div className="flex items-center gap-2 mb-6 text-green-400">
               <Terminal className="h-5 w-5" />
-              <span className="text-sm font-mono font-medium">~/philosophy/manifesto.md</span>
+              <span className="text-sm font-mono font-medium">
+                ~/philosophy/manifesto.md
+              </span>
             </div>
 
             <div className="space-y-6 font-mono text-gray-300 leading-relaxed">
               <p className="text-lg font-light">
-                I believe in <span className="text-green-400 font-bold">open infrastructure</span> and transparent AI.
-                The future belongs to systems that run locally, respect privacy, and empower users with direct control
+                I believe in{" "}
+                <span className="text-green-400 font-bold">
+                  open infrastructure
+                </span>{" "}
+                and transparent AI. The future belongs to systems that run
+                locally, respect privacy, and empower users with direct control
                 over their data and computational resources.
               </p>
 
               <p className="text-lg font-light">
-                <span className="text-green-400 font-bold">Edge AI</span> isn't just about performance—it's about
-                democratizing access to intelligent systems. When AI runs on your device, you own your intelligence. No
-                cloud dependencies, no data harvesting, no vendor lock-in.
+                <span className="text-green-400 font-bold">Edge AI</span> isn't
+                just about performance—it's about democratizing access to
+                intelligent systems. When AI runs on your device, you own your
+                intelligence. No cloud dependencies, no data harvesting, no
+                vendor lock-in.
               </p>
 
               <p className="text-lg font-light">
                 I'm building the infrastructure that makes this vision possible:{" "}
                 <span className="text-green-400 font-bold">
-                  autonomous systems that think locally, act globally, and remain under user control
+                  autonomous systems that think locally, act globally, and
+                  remain under user control
                 </span>
-                . From SwiftUI frameworks that bring AI to macOS, to Rust-powered inference engines that run on consumer
-                hardware.
+                . From SwiftUI frameworks that bring AI to macOS, to
+                Rust-powered inference engines that run on consumer hardware.
               </p>
 
               <p className="text-lg font-light">
-                The next generation of AI won't live in distant data centers—it will live in our pockets, on our desks,
-                and in our communities. <span className="text-green-400 font-bold">Local-first is the future</span>, and
-                I'm here to build it.
+                The next generation of AI won't live in distant data centers—it
+                will live in our pockets, on our desks, and in our communities.{" "}
+                <span className="text-green-400 font-bold">
+                  Local-first is the future
+                </span>
+                , and I'm here to build it.
               </p>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function ContactSection() {
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-b from-gray-900 to-black"
+    >
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -680,7 +788,9 @@ function ContactSection() {
 
             <Card className="bg-gray-900/50 border-green-500/20 hover:border-green-400/50 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="font-mono text-green-400 font-semibold">Direct Links</CardTitle>
+                <CardTitle className="font-mono text-green-400 font-semibold">
+                  Direct Links
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
@@ -712,7 +822,7 @@ function ContactSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function Footer() {
@@ -764,7 +874,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default function Portfolio() {
@@ -780,5 +890,5 @@ export default function Portfolio() {
       <ContactSection />
       <Footer />
     </div>
-  )
+  );
 }
